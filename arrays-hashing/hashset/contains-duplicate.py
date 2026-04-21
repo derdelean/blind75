@@ -15,7 +15,7 @@ from typing import List
 nums = [1,2,3,4,1]
 
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
+    def hashSet1(self, nums: List[int]) -> bool:
         visited_elements = set()
         
         for n in nums:
@@ -23,10 +23,14 @@ class Solution:
                 return True
             visited_elements.add(n)
         return False
-
+    
+    def hashSet2(self, nums: List[int]) -> bool:
+        if len(set(nums)) != len(nums):
+            return True
+        return False
 
 solution = Solution()
-result = solution.containsDuplicate(nums)
+result = solution.hashSet2(nums)
 
 if result:
     print("This input array has duplicates!")
