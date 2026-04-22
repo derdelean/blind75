@@ -22,10 +22,10 @@ impl Solution {
         let mut visited = HashSet::new();
 
         for n in nums {
-            if visited.contains(&n) {
+            if !visited.insert(n) {
+                // insert already tells if value is new, just 1 hash lookup
                 return true;
             }
-            visited.insert(n);
         }
         false //tail expression rule no semicolon -> preferred way
     }
@@ -38,10 +38,21 @@ impl Solution {
         }
         false
     }
+
+    fn compare_neighbours(mut nums: Vec<i32>) -> bool {
+        nums.sort();
+
+        for i in 1..nums.len() {
+            if nums[i - 1] == nums[i] {
+                return true;
+            }
+        }
+        false
+    }
 }
 
 fn main() {
     let nums = vec![1, 2, 3, 4, 1];
-    let result = Solution::hash_set2(nums);
+    let result = Solution::hash_set1(nums);
     println!("{}", result);
 }
