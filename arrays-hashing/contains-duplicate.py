@@ -2,27 +2,25 @@
 Task: Given an integer array nums, return true if any value appears more than once in the array,
 otherwise return false
 
-HashSet visited_elements Solution:
+Check Array againt HashSet with visited elements:
 Time: O(n) - Each operation takes O(1) checking/scanning array once so O(n)
 Space: O(n) - HashSet creation -> Size can be up to the size of input so O(n)
 
-Array to HashSet casting Solution:
+Array to HashSet casting:
 Time: O(n) -
 Space: O(n) -
 
-Compare neighbours, sorting solution:
+Compare neighbours (sorting first):
 Time: O(n) -
 Space: O(n) -
 
-
-Check Array againt HashSet with visited elements
 """
 
 
 from typing import List
 
 
-nums = [1,2,3,4,1]
+nums = [1,2,3,4,5]
 
 class Solution:
     def hashSet1(self, nums: List[int]) -> bool:
@@ -46,11 +44,18 @@ class Solution:
             if nums[i-1] == nums[i]:
                 return True
         return False
+    
+    def bruteForce(self, nums: List[int]) -> bool:
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[i] == nums[j]:
+                    return True
+        return False   
 
 
 
 solution = Solution()
-result = solution.compareNeighbours(nums)
+result = solution.bruteForce(nums)
 
 if result:
     print("This input array has duplicates!")
